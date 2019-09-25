@@ -1,6 +1,6 @@
 <form id="formz" name="contact" method="POST" data-netlify="true">
   <input type="text" name="name" pattern="[a-zA-Z]+" placeholder="Name" required>
-  <input id="surname" type="text" name="surname" pattern="[a-zA-Z]+" placeholder="Surname">
+  <input id="surname" type="text" name="surname" hidden pattern="[a-zA-Z]+" placeholder="Surname">
   <input type="tel" name="phone" pattern="[0-9]+" placeholder="Phone" required>
   <select required aria-required="true" name="option">
     <option value="">Choose an option</option>
@@ -15,10 +15,13 @@
 <script>
   $("#formz").submit(function(e) {
     e.preventDefault();
-
-    var $form = $(this);
-    $.post($form.attr("action"), $form.serialize()).then(function() {
-      window.location.href = `https://recycledrobot.co.uk`;
-    });
+    if ($('#surname').val().length) {
+      console.log("BOT");
+    } else {
+      var $form = $(this);
+      $.post($form.attr("action"), $form.serialize()).then(function() {
+        window.location.href = `https://recycledrobot.co.uk`;
+      });
+    }
   });
 </script>
