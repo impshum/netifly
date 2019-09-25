@@ -10,3 +10,15 @@
   </select>
   <button type="submit">Submit</button>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  $("#formz").submit(function(e) {
+    e.preventDefault();
+
+    var $form = $(this);
+    $.post($form.attr("action"), $form.serialize()).then(function() {
+      alert("Thank you!");
+    });
+  });
+</script>
